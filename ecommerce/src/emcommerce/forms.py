@@ -32,7 +32,7 @@ class LoginForm(forms.Form):
 
 class RegisterForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control",
-                                                    "placeholder":"username",
+                                                    "placeholder":"Student Number",
                                                     }))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"class":"form-control",
                                                     "placeholder":"Password",
@@ -44,7 +44,9 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"form-control",
                                                     "placeholder":"Your Email",
                                                     }))
-    extra_field = forms.CharField(label="Extra Field", max_length=100)
+    course = forms.CharField(label="Course", max_length=100)
+    college = forms.CharField(label="College", max_length=100)
+    year = forms.CharField(label="Year", max_length=1)
 
     def clean(self):
         data = self.cleaned_data
@@ -62,8 +64,8 @@ class RegisterForm(forms.Form):
         return username
 
     def clean_email(self):
-        username = self.cleaned_data.get("email")
-        qs = User.objects.filter(usernaemailme=email)
+        email = self.cleaned_data.get("email")
+        qs = User.objects.filter(email=email)
         if qs.exists():
             raise forms.ValidationError("email is already in use")
         return email

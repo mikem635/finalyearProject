@@ -3,4 +3,10 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
   user = models.OneToOneField(User)
-  extra_field = models.CharField(max_length=100)
+  course = models.CharField(max_length=100)
+  college = models.CharField(max_length=100)
+  year = models.CharField(max_length=1)
+
+
+  def __str__(self):
+          return "%s's profile" % self.user

@@ -13,10 +13,9 @@ def home_page(request):
         "content": "Welcome to the home page",
 
     }
-
+    #profile = request.user.userprofile
     if request.user.is_authenticated():
         context = {
-            "premium_content": "Yeah"
         }
     return render(request, "home.html", context)
 
@@ -79,7 +78,14 @@ def register_page(request):
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
         new_user = User.objects.create_user(username, email, password)
-        profile = new_user.userprofile
-        profile.extra_field = form_cleaned_data.get("extra_field")
+        #profile = request.user.userprofile
+        #
+        try:
+            profile = request.user.userprofile
+        except UserProfile.DoesNotExist:
+            profile = UserProfile(user=request.user)
+        profile.course = form.cleaned_data.get("course")
+        profile.college = form.cleaned_data.get("college")
+        profile.year = form.cleaned_data.get("year")
         profile.save()
     return render(request, "auth/register.html", context)
