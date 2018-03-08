@@ -20,10 +20,13 @@ from django.contrib import admin
 
 
 from .views import home_page, about_page, contact_page, login_page, register_page
+from events.views import EventListView, EventDetailView
 
 urlpatterns = [
     url(r'^$', home_page),
     url(r'^about/$', about_page),
+    url(r'^Events/$', EventListView.as_view()),
+    url(r'^Events/(?P<pk>\d+)/$', EventDetailView.as_view()),
     url(r'^contact/$', contact_page),
     url(r'^login/$', login_page),
     url(r'^register/$', register_page),
