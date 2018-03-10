@@ -4,7 +4,21 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
   user = models.OneToOneField(User)
   course = models.CharField(max_length=100)
-  college = models.CharField(max_length=100)
+  SEFS = 'SEFS'
+  Medicine = 'Medicine'
+  BusinessAndLaw = 'Business And Law'
+  ARTS = 'arts'
+  college_choices = (
+      (SEFS, 'SEFS'),
+      (Medicine, 'Medicine'),
+      (BusinessAndLaw, 'Business And Law'),
+      (ARTS, 'Arts'),
+  )
+  
+
+  college = models.CharField(max_length=2,
+                                    choices=college_choices,
+                                    default=SEFS)
   year = models.CharField(max_length=1)
 
 

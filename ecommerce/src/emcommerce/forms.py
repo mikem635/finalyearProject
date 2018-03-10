@@ -45,7 +45,17 @@ class RegisterForm(forms.Form):
                                                     "placeholder":"Your Email",
                                                     }))
     course = forms.CharField(label="Course", max_length=100)
-    college = forms.CharField(label="College", max_length=100)
+    SEFS = 'SEFS'
+    Medicine = 'Medicine'
+    BusinessAndLaw = 'Business And Law'
+    ARTS = 'arts'
+    college_choices = (
+        (SEFS, 'SEFS'),
+        (Medicine, 'Medicine'),
+        (BusinessAndLaw, 'Business And Law'),
+        (ARTS, 'Arts'),
+    )
+    college = forms.ChoiceField(choices=college_choices)
     year = forms.CharField(label="Year", max_length=1)
 
     def clean(self):
