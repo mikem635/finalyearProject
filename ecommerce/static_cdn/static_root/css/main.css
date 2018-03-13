@@ -1,3 +1,10 @@
 body{
-  color: #ccc;
+  background-color: #ccc;
+}
+
+.border-class
+{
+  border:thin black solid;
+  margin:20px;
+  padding:20px;
 }

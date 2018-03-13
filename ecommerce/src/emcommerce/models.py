@@ -14,9 +14,9 @@ class UserProfile(models.Model):
       (BusinessAndLaw, 'Business And Law'),
       (ARTS, 'Arts'),
   )
-  
 
-  college = models.CharField(max_length=2,
+
+  college = models.CharField(max_length=20,
                                     choices=college_choices,
                                     default=SEFS)
   year = models.CharField(max_length=1)

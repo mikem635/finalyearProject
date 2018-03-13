@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^$', home_page),
     url(r'^about/$', about_page),
     url(r'^Events/$', EventListView),
-    url(r'^Events/(?P<pk>\d+)/$', EventDetailView.as_view()),
+    url(r'^Events/(?P<pk>\d+)/$', EventDetailView),
     url(r'^contact/$', contact_page),
     url(r'^login/$', login_page),
     url(r'^register/$', register_page),

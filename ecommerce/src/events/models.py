@@ -20,7 +20,16 @@ def upload_image_path(instance, filename):
     return "events/{new_filename}/{new_file}".format(new_filename=new_filename,
                                                         new_file=new_file)
 
+class EventManager(models.Manager):
+    def get_by_id(self, id):
+        qs = self.get_queryset().filter(id=id)
+        if qs.count() == 1:
+            return qs.first()
+        return None
+
 class Event(models.Model):
+
+    objects = EventManager()
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     price = models.DecimalField(decimal_places=2, max_digits=4, default=25.00)
@@ -28,8 +37,8 @@ class Event(models.Model):
     SEFS = 'SEFS'
     Medicine = 'Medicine'
     BusinessAndLaw = 'Business And Law'
-    ARTS = 'arts'
-    ALL = 'all'
+    ARTS = 'Arts'
+    ALL = 'All'
     collegeOnSalleTo_choices = (
         (SEFS, 'SEFS'),
         (Medicine, 'Medicine'),
