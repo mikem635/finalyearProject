@@ -19,29 +19,13 @@ class EventListView(ListView):
         return context """
 
 
-def EventDetailView(request, pk=None, *args, **kwargs):
-    instance = Event.objects.get_by_id(pk) #id
+def EventDetailView(request, slug = None, pk=None, *args, **kwargs):
+    try:
+        instance = Event.objects.get(slug=slug) #id
+    except Event.DoesNotExist:
+            raise Http404("Not found..")
     if instance is None:
         raise Http404("Product doesn't exist")
-
-
-    #instance = get_object_or_404(Product, pk=pk)
-    # try:
-    #     instance = Product.objects.get(id=pk)
-    # except Product.DoesNotExist:
-    #     print('no product here')
-    #     raise Http404("Product doesn't exist")
-    # except:
-    #     print("huh?")
-
-    #instance  = Event.objects.filter(id=pk)
-    #print(qs)
-    """
-    if qs.exists() and qs.count() == 1: # len(qs)
-        instance = qs.first()
-    else:
-        raise Http404("Product doesn't exist")"""
-
     context = {
         'object': instance
     }

@@ -19,16 +19,20 @@ from django.conf.urls import url
 from django.contrib import admin
 
 
+
 from .views import home_page, about_page, contact_page, login_page, register_page
 from events.views import EventListView, EventDetailView
+from cart.views import cart
+
 
 urlpatterns = [
     url(r'^$', home_page),
     url(r'^about/$', about_page),
-    url(r'^Events/$', EventListView),
-    url(r'^Events/(?P<pk>\d+)/$', EventDetailView),
-    url(r'^contact/$', contact_page),
+    url(r'^Events/$', EventListView, name= "Balls"),
+    url(r'^Events/(?P<slug>[\w-]+)/$', EventDetailView, name='detail'),
+    url(r'^contact/$', contact_page, name= "contact"),
     url(r'^login/$', login_page),
+    url(r'^cart/$', cart),
     url(r'^register/$', register_page),
     url(r'^admin/', admin.site.urls),
 ]
