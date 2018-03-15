@@ -1,13 +1,27 @@
 body{
-  background-color: #C1C8EF;
-  font-family: 'Roboto', sans-serif;
+  background-color: #DFDCE3;
+}
+
+html *{
+  font-family: 'Roboto Mono', monospace;
+  color:#4ABDAC;
 }
 
 .border-class
 {
-  border:thin black solid;
+  border:solid;
+  border-width: medium;
   margin:20px;
   padding:20px;
-  border-radius: 15px;
-  border-color: #48EBFF;
+  border-radius: 10px;
+  border-color: #4ABDAC;
 }
+
+.register-form{
+    color:#4ABDAC;
+  }
+
+  html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+  }
