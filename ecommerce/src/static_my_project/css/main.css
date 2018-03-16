@@ -1,13 +1,57 @@
 body{
-  background-color: #C1C8EF;
-  font-family: 'Roboto', sans-serif;
+  background-color: #DFDCE3;
+}
+
+html *{
+  font-family: 'Roboto Mono', monospace;
+  color:#4ABDAC;
 }
 
 .border-class
 {
-  border:thin black solid;
+  border:solid;
+  border-width: medium;
   margin:20px;
   padding:20px;
-  border-radius: 15px;
-  border-color: #48EBFF;
+  border-radius: 10px;
+  border-color: #4ABDAC;
+}
+
+.register-form{
+    color:#4ABDAC;
+  }
+
+  html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+  }
+
+.bod{
+  background-color: white;
+  margin-top: 4%;
+
+}
+.product-row{
+  border:solid;
+  border-width: 0px 0px 2px 0px;
+  border-color: #4ABDAC;
+
+}
+
+.event_price{
+  border-width: thin;
+  border-left: solid;
+  border-color: #4ABDAC;
+  padding-bottom: 2px;
+  margin:2px;
+  padding:2px;
+
+}
+
+@media only screen and (max-width: 800px){
+  .event_price{
+    border-left: None;
+
+  }
+
 }

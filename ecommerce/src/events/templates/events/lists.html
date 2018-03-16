@@ -1,39 +1,54 @@
 {% extends "base.html" %}
-
+{% load static %}
 
 {% block content %}
 <div class="container">
-  {{ queryset}}
 
+<div class="col-lg-12 bod  ">
   {% for obj in product %}
-
-  <div class = "row">
-    <h1>'>{{obj.title}} </h1 ><br/>
-    <p> {{obj.price}}</p>
-  </div>
-
-  {% endfor %}
-
-  {{course}}
-
-
-
-
-  <h1> This product is on sale to every one in the college</h1>
-
-  {% for obj in allSaleProduct %}
-  <div class = "row">
-    <div class="col-sm-6">
-      <h2>{{obj.title}} </h2><br/>
+<div class = "row product-row">
+    <div class="col-lg-4">
+      <h6>{{obj.title}} </h6><br/>
     </div>
-    <div class="col-sm">
-
+    <div class="col-lg-2 event_price">
+      <p> {{obj.hosting}}</p>
     </div>
-    <div class="col-sm">
+    <div class="col-lg-3 event_price">
+      <p> {{obj.location}}</p>
+    </div>
+    <div class="col-lg-2 event_price">
       <p> {{obj.price}}</p>
     </div>
+</div>
+
+
+  {% endfor %}
+</div>
+
+
+
+
+
+  <h4> This product is on sale to every one in the college</h4>
+<div class="col-lg-12 bod">
+  {% for obj in allSaleProduct %}
+  <div class = "row product-row">
+      <div class="col-lg-4">
+        <h6>{{obj.title}} </h6><br/>
+      </div>
+      <div class="col-lg-2 event_price">
+        <p> {{obj.hosting}}</p>
+      </div>
+      <div class="col-lg-3 event_price">
+        <p> {{obj.location}}</p>
+      </div>
+      <div class="col-lg-2 event_price">
+        <p> {{obj.price}}</p>
+      </div>
   </div>
 
   {% endfor %}
+</div>
+
 </div>
 {% endblock %}

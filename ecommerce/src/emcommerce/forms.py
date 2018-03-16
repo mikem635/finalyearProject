@@ -24,7 +24,7 @@ class ContactForm(forms.Form):
 
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control",
-                                                    "placeholder":"username",
+                                                    "placeholder":"Student Number",
                                                     }))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"class":"form-control",
                                                     "placeholder":"Password",
@@ -44,7 +44,9 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"form-control",
                                                     "placeholder":"Your Email",
                                                     }))
-    course = forms.CharField(label="Course", max_length=100)
+    course = forms.CharField(label="Course", max_length=100, widget=forms.TextInput(attrs={"class":"form-control",
+                                                    "placeholder":"Your Course",
+                                                    }))
     SEFS = 'SEFS'
     Medicine = 'Medicine'
     BusinessAndLaw = 'Business And Law'

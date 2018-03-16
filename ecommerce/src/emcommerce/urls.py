@@ -26,7 +26,7 @@ from cart.views import cart, basket_update
 
 
 urlpatterns = [
-    url(r'^$', home_page),
+    url(r'^$', login_page),
     url(r'^about/$', about_page),
     url(r'^Events/$', EventListView, name= "Balls"),
     url(r'^Events/(?P<slug>[\w-]+)/$', EventDetailView, name='detail'),

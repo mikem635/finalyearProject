@@ -34,6 +34,8 @@ class Event(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(blank=True, null=True, unique=True)
     description = models.CharField(max_length=1000)
+    hosting = models.CharField(max_length=100, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
     price = models.DecimalField(decimal_places=2, max_digits=4, default=25.00)
     image = models.ImageField(upload_to=upload_image_path, blank=True, null=True)
     SEFS = 'SEFS'
