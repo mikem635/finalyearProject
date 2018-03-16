@@ -22,7 +22,7 @@ from django.contrib import admin
 
 from .views import home_page, about_page, contact_page, login_page, register_page
 from events.views import EventListView, EventDetailView
-from cart.views import cart
+from cart.views import cart, basket_update
 
 
 urlpatterns = [
@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^contact/$', contact_page, name= "contact"),
     url(r'^login/$', login_page),
     url(r'^cart/$', cart),
+    url(r'^basket_update/$', basket_update),
     url(r'^register/$', register_page),
     url(r'^admin/', admin.site.urls),
 ]
