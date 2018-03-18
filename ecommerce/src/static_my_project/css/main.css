@@ -48,6 +48,16 @@ html *{
 
 }
 
+.add_to_cart_button{
+  margin-top:4%;
+}
+
+.btn-success{
+  background-color:#4ABDAC !important;
+  border-color: #4ABDAC !important;
+
+}
+
 @media only screen and (max-width: 800px){
   .event_price{
     border-left: None;

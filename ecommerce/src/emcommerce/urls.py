@@ -22,19 +22,20 @@ from django.contrib import admin
 
 from .views import home_page, about_page, contact_page, login_page, register_page
 from events.views import EventListView, EventDetailView
-from cart.views import cart, basket_update
+from cart.views import cart, basket_update, remove_item
 
 
 urlpatterns = [
     url(r'^$', login_page),
     url(r'^about/$', about_page),
     url(r'^Events/$', EventListView, name= "Balls"),
-    url(r'^Events/(?P<slug>[\w-]+)/$', EventDetailView, name='detail'),
+    url(r'^Events/(?P<slug>[\w-]+)/$', EventDetailView.as_view(), name='detail'),
     url(r'^contact/$', contact_page, name= "contact"),
     url(r'^login/$', login_page),
-    url(r'^cart/$', cart),
-    url(r'^basket_update/$', basket_update),
-    url(r'^register/$', register_page),
+    url(r'^cart/$', cart, name="cart"),
+    url(r'^basket_update/$', basket_update, name="update"),
+    url(r'^remove_item/$', remove_item, name="remove_item"),
+    url(r'^register/$', register_page, name= "register"),
     url(r'^admin/', admin.site.urls),
 ]
 

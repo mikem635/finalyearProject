@@ -1,5 +1,6 @@
 {% url 'Balls' as balls_url%}
 {% url 'contact' as contact_url%}
+{% url 'cart' as cart_url%}
 
 
 
@@ -18,7 +19,7 @@
         <a class="nav-link" href="{{contact_url}}">Contact</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link" href="{{cart_url}}">Basket {{ request.session.cart_total }}</a>
       </li>
     </ul>
   </div>

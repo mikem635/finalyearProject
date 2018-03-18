@@ -2,6 +2,36 @@
 
 {% block content  %}
 
-<p> this is a cart</p>
+<div class="container bod">
 
-{% endblock %} 
+{% if cart.tickets.exists %}
+<h2> This is a cart</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Event</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  {% for event in cart.tickets.all %}
+  <tbody>
+    <tr>
+      <td><a href="{{ event.get_url}}">{{ event.title }}</a></td>
+      <td>{{ event.price }}</td>
+      <td>{% include 'events/remove_item.html' with event=event cart=cart %}</td>
+    </tr>
+    {% endfor%}
+    <tr>
+      <td colspan="2"></td>
+      <td>Total: {{ cart.total_price }}</td>
+    </tr>
+  </tbody>
+</table>
+
+{% else %}
+  <h2 class = "lead"> Cart is empty </h2>
+
+{% endif %}
+</div>
+{% endblock %}

@@ -28,11 +28,12 @@ html *{
 
 .bod{
   background-color: white;
+  margin-top: 4%;
 
 }
 .product-row{
-  border-width: thin;
-  border-bottom: solid 3px;
+  border:solid;
+  border-width: 0px 0px 2px 0px;
   border-color: #4ABDAC;
 
 }
@@ -44,5 +45,19 @@ html *{
   padding-bottom: 2px;
   margin:2px;
   padding:2px;
+
+}
+
+.add_to_cart_button{
+  margin:2px;
+  padding:2px;
+  background-color: blue;
+}
+
+@media only screen and (max-width: 800px){
+  .event_price{
+    border-left: None;
+
+  }
 
 }
