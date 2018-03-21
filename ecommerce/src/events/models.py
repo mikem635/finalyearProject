@@ -37,6 +37,9 @@ class Event(models.Model):
     hosting = models.CharField(max_length=100, blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     price = models.DecimalField(decimal_places=2, max_digits=4, default=25.00)
+    time_sale_start = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
+    time_sale_end = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
+    number_tickets_on_sale = models.IntegerField(default=0)
     image = models.ImageField(upload_to=upload_image_path, blank=True, null=True)
     SEFS = 'SEFS'
     Medicine = 'Medicine'
