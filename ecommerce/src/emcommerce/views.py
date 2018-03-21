@@ -46,21 +46,22 @@ def login_page(request):
         "form": form
 
     }
-    print(request.user.is_authenticated())
     if form.is_valid():
-        print(form.cleaned_data)
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             #context['form'] = LoginForm()
-            print(request.user.is_authenticated())
-            return redirect("/")
+            return redirect("/Events/")
         # Redirect to a success page.
         else:
         # Return an 'invalid login' error message.
-            print("Error")
+            context = {
+                "form": form,
+                "error": "Please Try Again"
+
+            }
 
     return render(request, "auth/login.html", context)
 
@@ -73,7 +74,6 @@ def register_page(request):
 
     }
     if form.is_valid():
-        print(form.cleaned_data)
         username = form.cleaned_data.get("username")
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")

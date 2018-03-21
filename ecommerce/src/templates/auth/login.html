@@ -12,6 +12,9 @@
       <h2> Please login</h2>
     </div>
     <form method='POST' class="border-class"> {% csrf_token %}
+      <div class="text-center">
+        <h3>{{ error }}</h3>
+      </div>
       <p> Please enter your Student Number:</p>
       {{form.username}}<br>
       <p> Please enter your Password:</p>

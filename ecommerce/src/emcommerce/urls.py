@@ -17,12 +17,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
 from django.contrib import admin
-
+from django.contrib.auth.views import LogoutView
 
 
 from .views import home_page, about_page, contact_page, login_page, register_page
 from events.views import EventListView, EventDetailView
-from cart.views import cart, basket_update, remove_item
+from cart.views import cart, basket_update, remove_item, checkout
 
 
 urlpatterns = [
@@ -32,7 +32,9 @@ urlpatterns = [
     url(r'^Events/(?P<slug>[\w-]+)/$', EventDetailView.as_view(), name='detail'),
     url(r'^contact/$', contact_page, name= "contact"),
     url(r'^login/$', login_page),
+    url(r'^logout/$', LogoutView.as_view(), name="logout"),
     url(r'^cart/$', cart, name="cart"),
+    url(r'^checkout/$', checkout, name="checkout"),
     url(r'^basket_update/$', basket_update, name="update"),
     url(r'^remove_item/$', remove_item, name="remove_item"),
     url(r'^register/$', register_page, name= "register"),

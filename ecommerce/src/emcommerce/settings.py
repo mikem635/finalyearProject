@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'events',
-    'cart'
+    'cart',
+    'orders',
+    'payment'
 
 ]
 
@@ -83,6 +85,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'emcommerce.wsgi.application'
+
+LOGIN_REDIRECT_URL = '/Events/'
+LOGOUT_REDIRECT_URL = '/login/'
 
 
 # Database

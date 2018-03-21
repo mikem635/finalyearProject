@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from .models import Cart
 from events.models import Event
 from emcommerce.views import login_page
+from orders.models import Order
 
 
 
@@ -37,3 +38,18 @@ def remove_item(request):
                 cart_object.tickets.remove(event_object)
                 request.session['cart_total'] = cart_object.tickets.count()
         return redirect("cart")
+
+def checkout(request):
+    basket_object, new_cart = Cart.objects.new_or_get(request)
+    order_object = None
+    if basket_object.tickets.count() == 0:
+        return redirect("cart")
+    else:
+        order_object, new_order = Order.objects.get_or_create(basket=basket_object)
+    payee_data = None
+    context = {
+        "object":order_object,
+        "payee_date": payee_data
+
+    }
+    return render(request, "cart/checkout.html", {})
