@@ -6,6 +6,8 @@ from django.db.models.signals import pre_save, m2m_changed
 from events.models import Event
 
 from django.db import models
+from django.utils import timezone
+
 
 User = settings.AUTH_USER_MODEL
 
@@ -36,7 +38,6 @@ class Cart(models.Model):
     user = models.ForeignKey(User, null=True, blank=True)
     tickets = models.ManyToManyField(Event, blank=True)
     total_price = models.DecimalField(default = 0.0, max_digits = 20, decimal_places = 2)
-
     objects = BasketManager()
 
     def __str__(self):
@@ -47,7 +48,6 @@ def m2m_changed_basket_rec(sender, instance, action, *args, **kwargs):
     events = instance.tickets.all()
     total = 0
     for event in events:
-        print(event.price)
         total += event.price
     instance.total_price = total
     instance.save()

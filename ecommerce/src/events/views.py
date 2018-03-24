@@ -65,8 +65,8 @@ def EventListView(request):
         context = {
 
         }
-
-        if profile.college == "sefs":
+        print(profile.college)
+        if profile.college == "SEFS":
             queryset = Event.objects.filter(collegeOnSalleTo__icontains="sefs", time_sale_start__lte=timezone.now(),
                                 time_sale_end__gte=timezone.now(), number_tickets_on_sale__gt=0)
             queryset1 = Event.objects.filter(collegeOnSalleTo__icontains="All", time_sale_start__lte=timezone.now(),

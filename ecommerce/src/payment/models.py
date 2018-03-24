@@ -13,6 +13,6 @@ class PayeeData(models.Model):
 
 def new_user(sender, instance, created, *args, **kwargs):
     if created:
-        PayeeDate.objets.get_or_create(user=instance, email=instance.emil)
+        PayeeData.objects.get_or_create(user=instance, email=instance.email)
 
 post_save.connect(new_user, sender=User)

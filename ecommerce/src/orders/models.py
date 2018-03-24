@@ -11,7 +11,7 @@ current_id = 0
 
 class Order(models.Model):
     order_id = models.CharField(max_length=120)
-    payee_data = models.ForeignKey(PayeeData)
+    payee_data = models.ForeignKey(PayeeData, null=True, blank=True)
     #billing_addr
     #shipping_addr
     basket = models.ForeignKey(Cart)
@@ -22,6 +22,7 @@ class Order(models.Model):
     )
     order_status = models.CharField(max_length=120, default='pending', choices=ORDER_CHOICES)
     total_price = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
+    active = models.BooleanField(default=True)
 
 
     def total(self):
@@ -42,6 +43,9 @@ def reset_id():
 def pre_save_order_id(sender, instance, *args, **kwargs):
     if not instance.order_id:
         instance.order_id = increase_id()
+    queryset = Order.objects.filter(basket=instance.basket).exclude(payee_data=instance.payee_data)
+    if queryset.exists():
+        queryset.update(active=False)
 
 pre_save.connect(pre_save_order_id, sender=Order)
 

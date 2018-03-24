@@ -3,7 +3,9 @@
 {% block content  %}
 
 <div class="container bod">
-
+{% if error != " " %}
+  <h4> {{ error }} is no longer on sale therefore has being removed from your car </h4>
+{% endif %}
 {% if cart.tickets.exists %}
 <h2> This is a cart</h2>
 <table class="table">

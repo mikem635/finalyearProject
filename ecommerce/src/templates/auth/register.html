@@ -10,6 +10,8 @@
   <div class="col-sm-6 register-form">
     <div class="text-center">
       <h2> Please create your account</h2>
+      {{ form.errors }}
+      {{ form.non_field_errors }}
     </div>
     <form method='POST' class="border-class"> {% csrf_token %}
       <p> Please enter your student Number:</p>
@@ -22,6 +24,9 @@
       {{form.email}}<br>
       <p> Please enter your course:</p>
       {{form.course}}<br>
+      <p> Please enter your year:</p>
+      {{form.year}}<br>
+      <br>
       <p> Please enter your the college your part of:</p>
       {{form.college}}<br>
       <br>

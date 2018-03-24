@@ -80,10 +80,11 @@ def register_page(request):
         new_user = User.objects.create_user(username, email, password)
         #profile = request.user.userprofile
         #
-        try:
+        """try:
             profile = request.user.userprofile
         except UserProfile.DoesNotExist:
-            profile = UserProfile(user=request.user)
+            profile = UserProfile(user=request.user)"""
+        profile, new_profile = UserProfile.objects.get_or_create(user= new_user)
         profile.course = form.cleaned_data.get("course")
         profile.college = form.cleaned_data.get("college")
         profile.year = form.cleaned_data.get("year")
