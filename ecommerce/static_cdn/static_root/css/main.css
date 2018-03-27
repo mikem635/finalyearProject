@@ -1,20 +1,21 @@
 body{
-  background-color: #DFDCE3;
+  background-color: #e5edf9;
 }
 
 html *{
   font-family: 'Roboto Mono', monospace;
-  color:#4ABDAC;
+  color:#4286f4;
 }
 
 .border-class
 {
   border:solid;
   border-width: medium;
-  margin:20px;
-  padding:20px;
+  margin:40px;
+  padding:40px;
   border-radius: 10px;
-  border-color: #4ABDAC;
+  border-color: #4286f4;
+  border-spacing: 15px 50px;
 }
 
 .register-form{
@@ -27,7 +28,6 @@ html *{
   }
 
 .bod{
-  background-color: white;
   margin-top: 4%;
 
 }
@@ -49,9 +49,14 @@ html *{
 }
 
 .add_to_cart_button{
-  margin:2px;
-  padding:2px;
-  background-color: blue;
+  margin-top:4%;
+}
+
+.btn-success{
+  background-color:#4286f4 !important;
+  border-color: #4286f4 !important;
+  margin-left: : 10px !important;
+
 }
 
 @media only screen and (max-width: 800px){

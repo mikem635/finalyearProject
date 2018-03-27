@@ -1,0 +1,42 @@
+{% extends "auth_base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6 register-form">
+    <div class="text-center">
+      <h2> Create a society</h2>
+      {{ form.errors }}
+      {{ form.non_field_errors }}
+    </div>
+    <form method='POST' class="border-class"> {% csrf_token %}
+      <p> Please enter the Society Username:</p>
+      {{form.username}}<br>
+      <p> Please enter the Society password:</p>
+      {{form.password}}<br>
+      <p> Please can you confirm the Society password:</p>
+      {{form.password2}}<br>
+      <p> Please enter the Society email:</p>
+      {{form.email}}<br>
+      <p> Please enter the Societies display name:</p>
+      {{form.society_name}}<br>
+      <br>
+
+      <div class="text-right">
+        <button type="submit" class=" btn btn-lg" >Submit</button>
+      </div>
+
+
+    </form>
+  </div>
+  </div>
+</div>
+</div
+
+</form>
+
+{% endblock %}

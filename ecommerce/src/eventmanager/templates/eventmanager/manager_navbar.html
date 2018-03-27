@@ -1,0 +1,27 @@
+{% url 'logout' as logout_url%}
+{% url 'submitEvent' as submitEvent_url%}
+{% url 'eventmanager' as eventmanager_url%}
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Societies Event Portal</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="container">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{eventmanager_url}}">Event Manager</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{submitEvent_url}}">Submit Event</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}?next=/soc_login/">Logout</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>

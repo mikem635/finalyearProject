@@ -2,9 +2,10 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from cart.models import Cart
+from cart.models import Basket
 from django.db.models.signals import pre_save, post_save
 from payment.models import PayeeData
+from addresses.models import Address
 
 
 current_id = 0
@@ -12,13 +13,13 @@ current_id = 0
 class Order(models.Model):
     order_id = models.CharField(max_length=120)
     payee_data = models.ForeignKey(PayeeData, null=True, blank=True)
-    #billing_addr
-    #shipping_addr
-    basket = models.ForeignKey(Cart)
+    billing_addr = models.ForeignKey(Address, related_name= "billing_addr",null=True, blank=True)
+    shipping_addr = models.ForeignKey(Address,related_name= "shipping_addr", null=True, blank=True)
+    basket = models.ForeignKey(Basket)
     ORDER_CHOICES = (
         ('pending', 'Pending'),
         ('processing', 'Processing'),
-        ('shipped', 'Shipped')
+        ('complete', 'Complete')
     )
     order_status = models.CharField(max_length=120, default='pending', choices=ORDER_CHOICES)
     total_price = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
@@ -28,6 +29,22 @@ class Order(models.Model):
     def total(self):
         self.total_price = self.basket.total_price
         self.save()
+
+    def done(self):
+        payee_data = self.payee_data
+        billing_addr = self.billing_addr
+        shipping_addr = self.shipping_addr
+        total_price = self.total_price
+        if payee_data and billing_addr and shipping_addr and total_price:
+            return True
+        return False
+
+    def paid(self):
+        if self.done():
+            self.order_status = 'complete'
+            self.save()
+        return self.order_status
+
 
 def increase_id():
     global current_id
@@ -59,7 +76,7 @@ def post_save_total( sender, instance, created, *args, **kwargs):
             order_object = queryset.first()
             order_object.total()
 
-post_save.connect(post_save_total, sender=Cart)
+post_save.connect(post_save_total, sender=Basket)
 
 def post_save_total_new_order( sender, instance, created, *args, **kwargs):
     if created:

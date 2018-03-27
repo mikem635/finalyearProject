@@ -7,38 +7,6 @@ from .models import UserProfile
 
 from .forms import *
 
-def home_page(request):
-    context = {
-        "title":"Hello World",
-        "content": "Welcome to the home page",
-
-    }
-    #profile = request.user.userprofile
-    if request.user.is_authenticated():
-        context = {
-        }
-    return render(request, "home.html", context)
-
-
-def about_page(request):
-    context = {
-        "title":"About Page",
-        "content": "Welcome to the about page"
-    }
-    return render(request, "home.html", context)
-
-def contact_page(request):
-    contact_form = ContactForm(request.POST or None)
-    context = {
-        "title":"contact page",
-        "content": "Welcome to the home contact page",
-        "form": contact_form
-
-    }
-    if contact_form.is_valid():
-        print(contact_form.cleaned_data)
-
-    return render(request, "contact/view.html", context)
 
 def login_page(request):
     form = LoginForm(request.POST or None)
@@ -67,6 +35,7 @@ def login_page(request):
 
 
 User = get_user_model()
+
 def register_page(request):
     form = RegisterForm(request.POST or None)
     context = {

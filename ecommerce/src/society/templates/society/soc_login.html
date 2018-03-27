@@ -1,0 +1,30 @@
+{% extends "auth_base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6 register-form">
+    <div class="text-center">
+      <h2> Please login</h2>
+    </div>
+    <form method='POST' class="border-class"> {% csrf_token %}
+      <div class="text-center">
+        <h3>{{ error }}</h3>
+      </div>
+      <p> Please enter your Society Username:</p>
+      {{form.username}}<br>
+      <p> Please enter your Password:</p>
+      {{form.password}}<br>
+      <br>
+      <div class="text-right">
+        <button type="submit" class=" btn btn-lg" >Submit</button>
+      </div>
+
+
+    </form>
+
+  {% endblock %}

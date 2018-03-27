@@ -1,6 +1,6 @@
 {% url 'Balls' as balls_url%}
 {% url 'contact' as contact_url%}
-{% url 'cart' as cart_url%}
+{% url 'basket' as basket_url%}
 {% url 'logout' as logout_url%}
 
 
@@ -17,13 +17,10 @@
         <a class="nav-link" href="{{balls_url}}">Balls <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{contact_url}}">Contact</a>
+        <a class="nav-link" href="{{basket_url}}">Basket {{ request.session.cart_total }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{cart_url}}">Basket {{ request.session.cart_total }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{logout_url}}">Logout</a>
+        <a class="nav-link" href="{% url 'logout' %}?next=/login/">Logout</a>
       </li>
     </ul>
   </div>

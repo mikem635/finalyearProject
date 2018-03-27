@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content  %}
+
+<div class="container bod">
+{% if error != " " %}
+  <h4> {{ error }} is no longer on sale therefore has being removed from your car </h4>
+{% endif %}
+{% if basket_qs.exists %}
+<h2> Your shopping basket</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Event</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  {% for event in basket_qs.all %}
+  <tbody>
+    <tr>
+      <td><a href="{{ event.tickets.get_url}}">{{ event.tickets }}</a></td>
+      <td>{{ event.tickets.price }}</td>
+      <td>{{ event.count }}</td>
+      <td>{% include 'events/remove_item.html' with event=event cart=cart %}</td>
+    </tr>
+    {% endfor%}
+    <tr>
+      <td colspan="3"></td>
+      <td>Total: {{ basket.total_price }}</td>
+    </tr>
+    <tr>
+      <td colspan="3"></td>
+      <td><a   class='btn btn-success' href = '{% url "checkout" %}'> Checkout </a></td>
+    </tr>
+  </tbody>
+</table>
+
+{% else %}
+  <h2 class = "lead"> Cart is empty </h2>
+
+{% endif %}
+</div>
+{% endblock %}

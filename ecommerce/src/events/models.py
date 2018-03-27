@@ -36,6 +36,7 @@ class Event(models.Model):
     description = models.CharField(max_length=1000)
     hosting = models.CharField(max_length=100, blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
+    max_per_person = models.IntegerField(default=2)
     price = models.DecimalField(decimal_places=2, max_digits=4, default=25.00)
     time_sale_start = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
     time_sale_end = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True, null=True)

@@ -18,3 +18,16 @@ class Address(models.Model):
         town = models.CharField(max_length=120)
         county = models.CharField(max_length=120)
         eir_code = models.CharField(max_length=120)
+
+        def __str__(self):
+            return str(self.payee_data)
+
+        def get_addr(self):
+            return "{line1},\n{line2},\n{line3}\n{town},\n{county},\n{eircode}\n".format(
+            line1 = self.address_line_1,
+            line2 = self.address_line_2 or " ",
+            line3 = self.address_line_3 or " ",
+            town = self.town,
+            county = self.county,
+            eircode = self.eir_code
+            )

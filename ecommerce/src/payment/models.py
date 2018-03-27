@@ -11,6 +11,9 @@ class PayeeData(models.Model):
     email = models.EmailField()
     time = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return str(self.user)
+
 def new_user(sender, instance, created, *args, **kwargs):
     if created:
         PayeeData.objects.get_or_create(user=instance, email=instance.email)

@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'cart',
     'orders',
     'payment',
-    'addresses'
+    'addresses',
+    'society',
+    'eventmanager'
 
 ]
 
@@ -87,8 +89,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'emcommerce.wsgi.application'
 
-LOGIN_REDIRECT_URL = '/Events/'
-LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = '/path_to_the_page'
+LOGOUT_REDIRECT_URL = '/path_to_the_page'
 
 
 # Database
