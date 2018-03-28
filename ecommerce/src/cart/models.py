@@ -44,9 +44,11 @@ class Basket(models.Model):
         return str(self.id)
 
 class BasketItems(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     tickets = models.ForeignKey(Event, on_delete=models.CASCADE)
     basket = models.ForeignKey(Basket, on_delete=models.CASCADE)
     count = models.IntegerField(default = 0)
+    complete = models.BooleanField(default=False)
 
 
 

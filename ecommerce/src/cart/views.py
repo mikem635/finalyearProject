@@ -52,6 +52,7 @@ def basket_update(request):
                 print(type(basket_object.total_price))
                 basket_object.total_price = Decimal(basket_object.total_price) + (price * quantity)
                 basket_object.save()
+                basket_items.user = request.user
                 basket_items.count = quantity
                 basket_items.save()
             else:
@@ -115,6 +116,13 @@ def checkout(request):
         "some check that order is done"
         complete = order_object.done()
         if complete:
+            basket_queryset = Basket.objects.filter(order = order_object.id)
+            for objects in basket_queryset:
+                id = objects.id
+                print(id)
+                basket_items = BasketItems.objects.get(basket = order_object.basket)
+                basket_items.complete = True
+                basket_items.save()
             order_object.paid()
             request.session['basket_total'] = 0
             del request.session['basket_id']

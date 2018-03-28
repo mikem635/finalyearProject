@@ -1,9 +1,13 @@
 <form class ='add-to-basket'method='POST' action='{% url "update" %}' class="form"> {% csrf_token %}
+  <div class = 'row'>
     <input type='hidden' name='event_id' value='{{ event.id }}' />
+      <div class = 'col-6'>
         <select class="form-control" name="quantity">
         {% for i in range %}
           <option > {{ i }} </option>
         {% endfor %}
       </select>
+    </div>
     <button type='submit'  class='btn btn-success'>Add to cart</button>
+  </div>
 </form>

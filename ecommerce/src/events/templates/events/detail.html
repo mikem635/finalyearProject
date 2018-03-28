@@ -3,21 +3,42 @@
 
 {% block content %}
 <div class="container">
-  <div class="col-lg-11 bod">
+  <div class="col-lg-12 bod">
   <div class = 'row'>
-    <div class = 'col-12 col-md-9 bod'>
-      {{ object.title }} <br/>
-      {{ object.description }} <br/>
-      {{ object.price }} <br/>
+    <div class = 'col-12 bod'>
+      <div class = 'row'>
+        <div class = 'col-1'>
+        </div>
+        <div class = 'col-5'>
+          <h1>{{ object.title }}</h1> <br/>
+        </div>
+        <div class = 'col-2'>
+          <h3>{{ object.location }}</h3> <br/>
+        </div>
+        <div class = 'col-4'>
+          <h3>{{ object.hosting }}</h3> <br/>
+        </div>
+      </div>
+
+      <div class = 'row'>
+        <div class = 'col-1'>
+        </div>
+        <div class = 'col-7'>
+          <p>{{ object.description }}</p>
+        </div>
+        <div class = 'col-4 add_to_cart_button add_to_cart_button'>
+          <h4> Price: €{{ object.price }}</h4>  <br>
+          {% include 'events/add_to_cart.html' with event=object basket=basket range=range %}
+
+        </div>
+      </div>
+
+       <br/>
 
       {{ object.max_per_person}}
       {% if object.image %}
         <img src = "{{ object.image.url }}" style="max-width:100%;"/> <br/>
       {% endif %}
-    </div>
-    <div class = 'col-12 col-md-3 add_to_cart_button add_to_cart_button'>
-      {% include 'events/add_to_cart.html' with event=object basket=basket range=range %}
-
     </div>
 
   </div>
