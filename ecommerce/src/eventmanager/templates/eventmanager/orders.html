@@ -1,0 +1,29 @@
+{% extends "eventmanager/manager_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+<div class="col-lg-12 bod  ">
+  <h4> These are a list of the orders placed for your event: {{ title }}</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Student Number</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for obj in orders %}
+      <tr>
+        <td>{{ obj.user.username }}</td>
+        <td>{{ obj.count }}</td>
+    </tbody>
+    {% endfor %}
+  </table>
+
+</div>
+
+
+</div>
+{% endblock %}

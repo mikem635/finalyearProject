@@ -22,7 +22,7 @@
         <td>{{obj.title}} </td>
         <td>{{obj.number_tickets_on_sale}}</td>
         <td>{{obj.time_sale_start}} </td>
-        <td><a class="btn btn-success" href="#" role="button">Edit Details</a></td>
+        <td><a class="btn btn-success" href="{% url 'edit_event' slug=obj.slug %}" role="button">Edit Details</a></td>
         <td><a class="btn btn-success" href="{% url 'detail' slug=obj.slug %}" role="button">View Details</a></td>
       </tr>
       {% endfor %}
@@ -53,10 +53,10 @@
       <tr>
         <td>{{obj.title}} </td>
         <td>{{obj.number_tickets_on_sale}}</td>
-        <td> tickets sold </td>
+        <td> {{obj.tickets_sold}}</td>
         <td>{{obj.time_sale_end}}</td>
-        <td><a class="btn btn-success" href="#" role="button">Edit Details</a></td>
-        <td><a class="btn btn-success" href="#" role="button">View Orders</a></td>
+        <td><a class="btn btn-success" href="{% url 'edit_event' slug=obj.slug %}" role="button">Edit Details</a></td>
+        <td><a class="btn btn-success" href="{% url 'complete_orders' slug=obj.slug %}" role="button">View Orders</a></td>
         <td><a class="btn btn-success" href="{% url 'detail' slug=obj.slug %}" role="button">View Details</a></td>
       </tr>
       {% endfor %}
@@ -80,8 +80,8 @@
     {% for obj in past %}
       <tr>
         <td>{{obj.title}} </td>
-        <td> tickert sold </td>
-        <td><a class="btn btn-success" href="#" role="button">View Orders</td>
+        <td> {{obj.tickets_sold}} </td>
+        <td><a class="btn btn-success" href="{% url 'complete_orders' slug=obj.slug %}" role="button">View Orders</a></td>
         <td><a class="btn btn-success" href="{% url 'detail' slug=obj.slug %}" role="button">View Details</a></td>
       </tr>
       {% endfor %}

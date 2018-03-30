@@ -25,7 +25,7 @@ from events.views import EventListView, EventDetailView
 from cart.views import basket, basket_update, remove_item, checkout
 from addresses.views import checkout_address_create_view, checkout_address_use_view
 from society.views import soc_register_page, soc_login_page
-from eventmanager.views import submitEvent,event_manager_home
+from eventmanager.views import submitEvent,event_manager_home, complete_orders, edit_event
 
 
 urlpatterns = [
@@ -33,6 +33,8 @@ urlpatterns = [
     url(r'^Events/$', EventListView, name= "Balls"),
     url(r'^Eventsmanager/$', event_manager_home, name= "eventmanager"),
     url(r'^Events/(?P<slug>[\w-]+)/$', EventDetailView, name='detail'),
+    url(r'^Orders/(?P<slug>[\w-]+)/$', complete_orders, name='complete_orders'),
+    url(r'^Edit_event/(?P<slug>[\w-]+)/$', edit_event, name='edit_event'),
     url(r'^checkout/address/create/$', checkout_address_create_view, name='checkout_address_create'),
     url(r'^checkout/address/reuse/$', checkout_address_use_view, name='checkout_address_use'),
     url(r'^login/$', login_page, name='login'),

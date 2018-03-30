@@ -87,6 +87,7 @@ def remove_item(request):
             request.session['basket_total'] = basket_object.tickets.count()
         return redirect("basket")
 
+
 def checkout(request):
     basket_object, new_basket = Basket.objects.new_or_get(request)
     order_object = None
@@ -119,8 +120,10 @@ def checkout(request):
             basket_queryset = Basket.objects.filter(order = order_object.id)
             for objects in basket_queryset:
                 id = objects.id
-                print(id)
                 basket_items = BasketItems.objects.get(basket = order_object.basket)
+                event = basket_items.tickets
+                event.update_sales(basket_items.count)
+                event.save()
                 basket_items.complete = True
                 basket_items.save()
             order_object.paid()
