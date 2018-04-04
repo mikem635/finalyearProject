@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class = "row">
+    <div class="col-12 col-md-6 my-2">
+      <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title">Billing</h5>
+            <div class="list-group">
+              <a class = 'list-group-item' href = '#'>Addresses</a>
+              <a class = 'list-group-item' href = '#'>Orders</a>
+
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 my-2">
+      <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title">Personal Information</h5>
+            <div class="list-group">
+              <a class = 'list-group-item' href = '#'>Name Change</a>
+              <a class = 'list-group-item' href = '#'>Password Reset</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  {% endblock %}

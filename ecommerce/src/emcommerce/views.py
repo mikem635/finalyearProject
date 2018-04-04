@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 
 
@@ -59,3 +60,11 @@ def register_page(request):
         profile.year = form.cleaned_data.get("year")
         profile.save()
     return render(request, "auth/register.html", context)
+
+@login_required
+def user_account(request):
+    context = {
+        "user": request.user
+
+    }
+    return render(request, "auth/account.html", context)

@@ -3,7 +3,7 @@ body{
 }
 
 html *{
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Work Sans', sans-serif;
   color:#4286f4;
 }
 
@@ -28,7 +28,12 @@ html *{
   }
 
 .bod{
-  margin-top: 4%;
+  background-color: white;
+  margin-top: 40px;
+  margin-left: 605px;
+  margin-bottom: 25px;
+  padding-top: 300px;
+    padding-bottom: 300px;
 
 }
 .product-row{
@@ -55,7 +60,7 @@ html *{
 .btn-success{
   background-color:#4286f4 !important;
   border-color: #4286f4 !important;
-  margin-left: : 10px !important;
+
 
 }
 

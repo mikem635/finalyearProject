@@ -20,6 +20,7 @@ class UserProfile(models.Model):
                                     choices=college_choices,
                                     default=SEFS)
   year = models.CharField(max_length=1)
+  is_activated = models.BooleanField()
 
 
   def __str__(self):

@@ -17,10 +17,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
 from django.contrib import admin
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth import views
 
 
-from .views import login_page, register_page
+from .views import login_page, register_page, user_account
 from events.views import EventListView, EventDetailView
 from cart.views import basket, basket_update, remove_item, checkout
 from addresses.views import checkout_address_create_view, checkout_address_use_view
@@ -38,8 +38,9 @@ urlpatterns = [
     url(r'^checkout/address/create/$', checkout_address_create_view, name='checkout_address_create'),
     url(r'^checkout/address/reuse/$', checkout_address_use_view, name='checkout_address_use'),
     url(r'^login/$', login_page, name='login'),
+    url(r'^account/$', user_account, name='account'),
     url(r'^soc_login/$', soc_login_page, name='soc_login'),
-    url(r'^logout/$', LogoutView.as_view(), name="logout"),
+    url(r'^logout/$', views.LogoutView.as_view(), name="logout"),
     url(r'^basket/$', basket, name="basket"),
     url(r'^checkout/$', checkout, name="checkout"),
     url(r'^basket_update/$', basket_update, name="update"),
@@ -47,7 +48,12 @@ urlpatterns = [
     url(r'^register/$', register_page, name= "register"),
     url(r'^soc_register_page/$', soc_register_page, name= "soc_register_page"),
     url(r'^submit_event/$', submitEvent, name= "submitEvent"),
-    url(r'^admin/', admin.site.urls),
+    url(r'^password/change/$', views.PasswordChangeView.as_view(), name='password_change'),
+    url(r'^password/change/done/$', views.PasswordChangeDoneView.as_view(), name='password_change_done'),
+    url(r'^password/reset/$', views.PasswordResetView.as_view(), name='password_reset'),
+    url(r'^password/reset/done/$', views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    url(r'^password/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    url(r'^password/reset/complete/$', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'), url(r'^admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:
