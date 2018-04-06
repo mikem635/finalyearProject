@@ -11,19 +11,24 @@
 
     <form method='POST' class="border-class form-signin"> {% csrf_token %}
       <div class="text-center">
-        <h2> Please login</h2>
       </div>
       <div class="text-center">
         <h3>{{ error }}</h3>
-      </div>
-      {{form.username}}
-      {{form.password}}<br>
-      <br>
-      <h5> Do not have an account? <a href="{% url 'register' %}">Register here</a>!<h5>
-      <div class="text-right">
-        <button type="submit" class=" btn btn-lg" >Submit</button>
-      </div>
+        {% if activate %}
+            <h3>{{ activate }}</h3>
+            <h3>Please Check your emails</h3>
 
+      </div>
+        {% else %}
+          <h2> Please login</h2>
+          {{form.username}}
+          {{form.password}}<br>
+          <br>
+          <h5> Do not have an account? <a href="{% url 'register' %}">Register here</a>!<h5>
+          <div class="text-right">
+            <button type="submit" class=" btn btn-lg" >Submit</button>
+          </div>
+      {% endif %}
 
     </form>
 

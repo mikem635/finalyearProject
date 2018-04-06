@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'payment',
     'addresses',
     'society',
+    'student',
     'eventmanager'
 
 ]
@@ -103,6 +104,14 @@ DATABASES = {
     }
 }
 
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mikem635@gmail.com'
+EMAIL_HOST_PASSWORD = '3C0i$tra'
+EMAIL_PORT = 587
+
+ACCOUNT_ACTIVATION_DAYS = 2
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

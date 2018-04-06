@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.contrib.auth import views
 
 
-from .views import login_page, register_page, user_account
+from .views import login_page, register_page, user_account, activation
 from events.views import EventListView, EventDetailView
 from cart.views import basket, basket_update, remove_item, checkout
 from addresses.views import checkout_address_create_view, checkout_address_use_view
@@ -29,7 +29,7 @@ from eventmanager.views import submitEvent,event_manager_home, complete_orders, 
 
 
 urlpatterns = [
-    url(r'^$', login_page),
+    url(r'^$', login_page, name='home'),
     url(r'^Events/$', EventListView, name= "Balls"),
     url(r'^Eventsmanager/$', event_manager_home, name= "eventmanager"),
     url(r'^Events/(?P<slug>[\w-]+)/$', EventDetailView, name='detail'),
@@ -54,6 +54,7 @@ urlpatterns = [
     url(r'^password/reset/done/$', views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     url(r'^password/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     url(r'^password/reset/complete/$', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'), url(r'^admin/', admin.site.urls),
+    url(r'^activate/(?P<key>.+)$', activation),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,11 @@
+Hello,
+
+Please activate your account for {{ email }} here: {{ path }}
+
+
+If did not request this account please contanct help123@gmail.com
+
+
+Regards,
+
+UCC Societies

@@ -4,23 +4,6 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-class ContactForm(forms.Form):
-    fullname = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control",
-                                                    "placeholder":"Name",
-                                                    "id":"form_full_name"}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"form-control",
-                                                    "placeholder":"Your Email",
-                                                    }))
-    text = forms.CharField(widget=forms.Textarea(attrs={"class":"form-control",
-                                                    "placeholder":"Your message",
-                                                    }))
-
-    def clean_email(self):
-        email = self.cleaned_data.get("email")
-        if not "test.com" in email:
-            raise forms.ValidationError("email has to be test.com")
-        return email
-
 
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control",
@@ -59,6 +42,9 @@ class RegisterForm(forms.Form):
     )
     college = forms.ChoiceField(choices=college_choices)
     year = forms.CharField(label="Year", max_length=1)
+
+
+    
 
     def clean(self):
         data = self.cleaned_data
