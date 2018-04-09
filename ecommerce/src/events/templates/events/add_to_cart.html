@@ -2,7 +2,7 @@
   <div class = 'row'>
     <input type='hidden' name='event_id' value='{{ event.id }}' />
       <div class = 'col-6'>
-        <select class="form-control" name="quantity">
+        <select class="form-control selectpicker" data-style="btn-success" name="quantity">
         {% for i in range %}
           <option > {{ i }} </option>
         {% endfor %}

@@ -22,7 +22,8 @@ class SubmitEventForm(forms.Form):
     price = forms.DecimalField()
     time_sale_start = forms.DateTimeField(widget=forms.DateTimeInput(),
                                                     initial=datetime.now())
-    time_sale_end = forms.DateTimeField()
+    time_sale_end = forms.DateTimeField(widget=forms.DateTimeInput(),
+                                                    initial=datetime.now())
     number_tickets_on_sale = forms.IntegerField()
     SEFS = 'SEFS'
     Medicine = 'Medicine'

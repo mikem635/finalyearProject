@@ -2,10 +2,11 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from cart.models import Basket
+from cart.models import Basket, BasketItems
 from django.db.models.signals import pre_save, post_save
 from payment.models import PayeeData
 from addresses.models import Address
+from events.models import Event
 
 
 current_id = 0
@@ -18,7 +19,6 @@ class Order(models.Model):
     basket = models.ForeignKey(Basket)
     ORDER_CHOICES = (
         ('pending', 'Pending'),
-        ('processing', 'Processing'),
         ('complete', 'Complete')
     )
     order_status = models.CharField(max_length=120, default='pending', choices=ORDER_CHOICES)
@@ -35,6 +35,12 @@ class Order(models.Model):
         billing_addr = self.billing_addr
         shipping_addr = self.shipping_addr
         total_price = self.total_price
+        queryset = BasketItems.objects.filter(basket=self.basket)
+        for obj in queryset:
+            event_id = obj.tickets.id
+            qty = obj.count
+            event_obj = Event.objects.get(id=event_id)
+            event_obj.update_sales(qty)
         if payee_data and billing_addr and shipping_addr and total_price:
             return True
         return False

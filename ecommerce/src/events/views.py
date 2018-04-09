@@ -32,52 +32,52 @@ def EventDetailView(request, slug=None, *args, **kwargs):
 
 def EventListView(request):
     if request.user.is_authenticated():
-        profile = request.user.userprofile
+        student = request.user.student
         context = {
 
         }
-        print(profile.college)
-        if profile.college == "SEFS":
+        print(student.college)
+        if student.college == "SEFS":
             queryset = Event.objects.filter(collegeOnSalleTo__icontains="sefs", time_sale_start__lte=timezone.now(),
                                 time_sale_end__gte=timezone.now(), number_tickets_on_sale__gt=0)
             queryset1 = Event.objects.filter(collegeOnSalleTo__icontains="All", time_sale_start__lte=timezone.now(),
                                 time_sale_end__gte=timezone.now(), number_tickets_on_sale__gt=0)
             context = {
                 'product' : queryset,
-                "course" : profile.college,
+                "course" : student.college,
                 'allSaleProduct' : queryset1
 
             }
-        elif profile.college == "Business And Law":
+        elif student.college == "Business And Law":
             queryset = Event.objects.filter(collegeOnSalleTo__icontains="Business And Law", time_sale_start__lte=timezone.now(),
                                 time_sale_end__gte=timezone.now(), number_tickets_on_sale__gt=0)
             queryset1 = Event.objects.filter(collegeOnSalleTo__icontains="All", time_sale_start__lte=timezone.now(),
                                 time_sale_end__gte=timezone.now(), number_tickets_on_sale__gt=0 )
             context = {
                 'product' : queryset,
-                "course" : profile.college,
+                "course" : student.college,
                 'allSaleProduct' : queryset1
 
             }
-        elif profile.college == "Medicine":
+        elif student.college == "Medicine":
             queryset = Event.objects.filter(collegeOnSalleTo__icontains="Medicine", time_sale_start__lte=timezone.now(),
                                 time_sale_end__gte=timezone.now(), number_tickets_on_sale__gt=0)
             queryset1 = Event.objects.filter(collegeOnSalleTo__icontains="All", time_sale_start__lte=timezone.now(),
                                 time_sale_end__gte=timezone.now(), number_tickets_on_sale__gt=0 )
             context = {
                 'product' : queryset,
-                "course" : profile.college,
+                "course" : student.college,
                 'allSaleProduct' : queryset1
 
             }
-        elif profile.college == "arts":
+        elif student.college == "arts":
             queryset = Event.objects.filter(collegeOnSalleTo__icontains="Arts", time_sale_start__lte=timezone.now(),
                                 time_sale_end__gte=timezone.now(),number_tickets_on_sale__gt=0)
             queryset1 = Event.objects.filter(collegeOnSalleTo__icontains="All", time_sale_start__lte=timezone.now(),
                                 time_sale_end__gte=timezone.now(), number_tickets_on_sale__gt=0)
             context = {
                 'product' : queryset,
-                "course" : profile.college,
+                "course" : student.college,
                 'allSaleProduct' : queryset1
 
             }

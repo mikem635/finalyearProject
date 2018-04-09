@@ -61,10 +61,28 @@ html *{
 
 }
 
-@media only screen and (max-width: 800px){
-  .event_price{
-    border-left: None;
 
-  }
+.btn-lg{
+  background-color:#FFFFFF !important;
+  border-color: #FFFFFF !important;
+
 
 }
+
+
+
+@media all and (max-width: 1200px) { /* screen size until 1200px */
+    body {
+        font-size: 1.2em; /* 1.5x default size */
+    }
+}
+@media all and (max-width: 750px) { /* screen size until 1000px */
+    body {
+        font-size: 0.7em; /* 1.2x default size */
+        }
+    }
+@media all and (max-width: 500px) { /* screen size until 500px */
+    body {
+        font-size: 0.8em; /* 0.8x default size */
+        }
+    }

@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.decorators import login_required
-from student.models import UserProfile
+from student.models import Student
 from django.utils.crypto import get_random_string
 from django.core.mail import send_mail
 from django.conf import settings
@@ -23,6 +23,10 @@ def generate_activation_key(user):
     return hashlib.sha256((user + secret_key).encode('utf-8')).hexdigest()
 
 
+def home(request):
+    return render(request, "auth/home.html", {})
+
+
 def login_page(request):
     form = LoginForm(request.POST or None)
     context = {
@@ -35,7 +39,7 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
         print(user)
         if user is not None:
-            student = get_object_or_404(UserProfile, user=user)
+            student = get_object_or_404(Student, user=user)
             if student.is_activated:
                 login(request, user)
                 #context['form'] = LoginForm()
@@ -91,13 +95,13 @@ def register_page(request):
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
         new_user = User.objects.create_user(username, email, password)
-        profile, new_profile = UserProfile.objects.get_or_create(user= new_user)
-        profile.course = form.cleaned_data.get("course")
-        profile.college = form.cleaned_data.get("college")
-        profile.year = form.cleaned_data.get("year")
-        profile.activation_key = generate_activation_key(username)
-        profile.key_expires = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(days=2), "%Y-%m-%d %H:%M:%S")
-        url = "http://127.0.0.1:8000/registration/"+profile.activation_key
+        student, new_Student = Student.objects.get_or_create(user= new_user)
+        student.course = form.cleaned_data.get("course")
+        strtudent.college = form.cleaned_data.get("college")
+        student.year = form.cleaned_data.get("year")
+        student.activation_key = generate_activation_key(username)
+        student.key_expires = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(days=2), "%Y-%m-%d %H:%M:%S")
+        url = "http://127.0.0.1:8000/registration/"+Student.activation_key
         email_context = {
                     'path': url,
                     'email': email
@@ -110,7 +114,7 @@ def register_page(request):
                             html_message=get_template("registration/emails/verify.html").render(email_context),
                             fail_silently=False,
                     )
-        profile.save()
+        student.save()
         return render(request, "auth/register.html", context)
 
     return render(request, "auth/register.html", context)
@@ -118,7 +122,7 @@ def register_page(request):
 def activation(request, key):
     activation_expired = False
     already_active = False
-    student = get_object_or_404(UserProfile, activation_key=key)
+    student = get_object_or_404(Student, activation_key=key)
     if student.is_activated == False:
         if timezone.now() > student.key_expires:
             activation_expired = True #Display: offer the user to send a new activation link

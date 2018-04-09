@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.contrib.auth import views
 
 
-from .views import login_page, register_page, user_account, activation
+from .views import login_page, register_page, user_account, activation, home
 from events.views import EventListView, EventDetailView
 from cart.views import basket, basket_update, remove_item, checkout
 from addresses.views import checkout_address_create_view, checkout_address_use_view
@@ -29,7 +29,7 @@ from eventmanager.views import submitEvent,event_manager_home, complete_orders, 
 
 
 urlpatterns = [
-    url(r'^$', login_page, name='home'),
+    url(r'^$', home, name='home'),
     url(r'^Events/$', EventListView, name= "Balls"),
     url(r'^Eventsmanager/$', event_manager_home, name= "eventmanager"),
     url(r'^Events/(?P<slug>[\w-]+)/$', EventDetailView, name='detail'),
